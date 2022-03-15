@@ -1,5 +1,6 @@
 # react-native-rehearse
 
-Purpose of this project is to brush up the undersigned's rusted react-native skills.
+Main purpose of this project is to brush up the undersigned's rusted react-native skills.
+  
+App that will be created will be a fishing diary app, where users can log info of their catches. App will use phones GPS, if desired/available and some weather api.
 
-Plan is that the created app will use a resource(s)/sensor(s) of mobile phone. As well as a REST service of some sort.  
