@@ -1,22 +1,22 @@
 [
     {
         "id": "as8dasdkjashd8hsad",
-        "species": "kuha",
+        "species": "zander",
         "weight": 0.5
     },
     {
         "id": "drgfasdkjashd8hsad",
-        "species": "kuha",
+        "species": "zander",
         "weight": 1
     },
     {
         "id": "as8dasdkjashd8zxcv",
-        "species": "hauki",
+        "species": "pike",
         "weight": 1
     },
     {
         "id": "as8dasdkjashdthrdd",
-        "species": "lohi",
+        "species": "salmon",
         "weight": 3
     }
 ]

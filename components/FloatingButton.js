@@ -8,7 +8,7 @@ const FloatingButton = ({ buttonFunction }) => {
   return (
     <FAB
       style={styles.fab}
-      icon="airplane"
+      icon="text-box-outline"
       onPress={buttonFunction}
     />
   );
