@@ -6,5 +6,6 @@ App that will be created will be a fishing diary app, where users can log info o
 App will use phone's GPS sensor, if desired/available and some weather api.
 
 First prototype of the UI:
+
 ![Proto_UI](proto.jpg)
 
