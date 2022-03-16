@@ -18,12 +18,15 @@ const listOfCatches = require('./mockdata/catchlist.json');
 const App: () => Node = () => {
   const [changeView, setChangeView] = useState(true);
   const [catches, setCatches] = useState(listOfCatches);
+  const [buttonIcon, setButtonIcon] = useState('plus');
 
   const handleView = () => {
     if(changeView) {
       setChangeView(false);
+      setButtonIcon('text-box-outline');
     } else {
       setChangeView(true);
+      setButtonIcon('plus');
     }
   };
 
@@ -37,7 +40,10 @@ const App: () => Node = () => {
       {(changeView) 
         ? <CatchList catches={catches} /> 
         : <AddForm addCatch={setCatches} />}
-      <FloatingButton buttonFunction={handleView} />
+      <FloatingButton 
+        buttonFunction={handleView} 
+        icon={buttonIcon}
+      />
       </ImageBackground>
     </SafeAreaView>
   );
