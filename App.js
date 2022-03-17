@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-trailing-spaces */
 import React, { useState } from 'react';
 import type {Node} from 'react';
-import AddCatchForm from './components/AddCatch';
 import CatchList from './components/CatchList';
 import AddForm from './components/AddForm';
 import FloatingButton from './components/FloatingButton';
@@ -13,6 +13,7 @@ import {
   Text,
   ImageBackground,
 } from 'react-native';
+
 const listOfCatches = require('./mockdata/catchlist.json');
 
 const App: () => Node = () => {
@@ -21,7 +22,7 @@ const App: () => Node = () => {
   const [buttonIcon, setButtonIcon] = useState('plus');
 
   const handleView = () => {
-    if(changeView) {
+    if (changeView) {
       setChangeView(false);
       setButtonIcon('text-box-outline');
     } else {
@@ -33,13 +34,16 @@ const App: () => Node = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground 
-        source={require('./tausta.jpg')}
+        source={require('./assets/images/tausta.jpg')}
         style={styles.backgroundImage}
         blurRadius={5}>
       <Text style={styles.sectionTitle}>Catch app</Text>
       {(changeView) 
         ? <CatchList catches={catches} /> 
-        : <AddForm addCatch={setCatches} />}
+        : <AddForm 
+            addCatch={setCatches}
+            catches={catches} 
+          />}
       <FloatingButton 
         buttonFunction={handleView} 
         icon={buttonIcon}
@@ -52,7 +56,7 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   sectionTitle: {
     fontSize: 24,
@@ -68,8 +72,8 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
 });
 

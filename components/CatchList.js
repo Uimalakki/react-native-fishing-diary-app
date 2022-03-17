@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-trailing-spaces */
 import React from 'react';
 import ListItem from './ListItem';
 import { View, StyleSheet, Text, FlatList, StatusBar } from 'react-native';

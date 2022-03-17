@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
 import React from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import helper from '../utils/helper.js';
 
 class AddForm extends React.Component {
   constructor(props) {
@@ -24,18 +24,25 @@ class AddForm extends React.Component {
     this.setState({ catch: newCatch });
   }
 
+  handleAddNewCatch = () => {
+    let newCatch = this.state.catch;
+    newCatch.id = helper.uniqueID();
+    this.setState({ catch: newCatch });
+    this.props.addCatch(oldCatches => [...oldCatches, newCatch]);
+  }
+
   render() {
     return (
       <View>
         <Text style={styles.header}>Add a catch</Text>
         <TextInput
           style={styles.input}
-          placeholder='species'
+          placeholder="species"
           onChangeText={this.handleSpecies}
         />
         <TextInput
           style={styles.input}
-          placeholder='weight'
+          placeholder="weight"
           onChangeText={this.handleWeight}
         />
         <TouchableOpacity
@@ -47,7 +54,9 @@ class AddForm extends React.Component {
           <Text style={styles.submitButtonText}>Get weather info</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.submitButton}>
+          style={styles.submitButton}
+          onPress={this.handleAddNewCatch}
+        >
           <Text style={styles.submitButtonText}>Add catch</Text>
         </TouchableOpacity>
       </View >
@@ -59,7 +68,7 @@ export default AddForm;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20
+    paddingTop: 20,
   },
   input: {
     margin: 15,
