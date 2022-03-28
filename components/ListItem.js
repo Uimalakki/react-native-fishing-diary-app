@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 
 
 const ListItem = ({ species, weight }) => {
@@ -14,17 +14,17 @@ const ListItem = ({ species, weight }) => {
 export default ListItem;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
   item: {
-    backgroundColor: '#f9c2ff',
+    ...Platform.select({
+      android: {
+        backgroundColor: '#f9c2ff',
+      },
+      ios: {
+        backgroundColor: '#5ac8fa',
+      },
+    }),
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
   },
 });

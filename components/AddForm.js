@@ -46,12 +46,12 @@ class AddForm extends React.Component {
           onChangeText={this.handleWeight}
         />
         <TouchableOpacity
-          style={styles.submitButton}>
-          <Text style={styles.submitButtonText}>Get GPS location</Text>
+          style={styles.secondaryButton}>
+          <Text style={styles.secondaryButtonText}>Get GPS location</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.submitButton}>
-          <Text style={styles.submitButtonText}>Get weather info</Text>
+          style={styles.secondaryButton}>
+          <Text style={styles.secondaryButtonText}>Get weather info</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.submitButton}
@@ -77,7 +77,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   submitButton: {
-    backgroundColor: '#7a42f4',
+    backgroundColor: '#A686F4',
+    padding: 10,
+    margin: 15,
+    height: 40,
+  },
+  secondaryButton: {
+    backgroundColor: '#86DAFB',
     padding: 10,
     margin: 15,
     height: 40,
@@ -89,5 +95,8 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     color: 'white',
+  },
+  secondaryButtonText: {
+    color: 'grey',
   },
 });

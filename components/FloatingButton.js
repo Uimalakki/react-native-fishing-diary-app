@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
     margin: 16,
-    bottom: 20,
+    right: 0,
     ...Platform.select({
       android: {
-        right: 0,
+        bottom: 20,
       },
       ios: {
-        right: "50%",
+        top: 10,
       },
     }),
   },
