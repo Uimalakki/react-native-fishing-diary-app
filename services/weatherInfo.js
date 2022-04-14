@@ -32,7 +32,6 @@ const getCurrentWeather = async (lat, lon) => {
 
   const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
   const apiKey = await encryptedStorage.getValue();
-  //const apiKey = '0fc2c86230d0ae99918cd51167a8ec1d';
 
   const request = axios
     .get(baseUrl + `?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
