@@ -1,26 +1,49 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-import React from 'react';
-import ListItem from './ListItem';
+import React, { useState, useEffect } from 'react';
+import Catch from './Catch';
 import { View, StyleSheet, Text, FlatList, StatusBar } from 'react-native';
+import { getAllCatches, deleteCatchById } from '../services/Database';
 
-const CatchList = ({catches}) => {
+const CatchList = ({ catches }) => {
 
+  const [fishCatches, setFishCatches] = useState(catches);
+
+  const removeCatch = (id) => {
+    deleteCatchById(id);
+    setFishCatches(getAllCatches());
+  };
+  
   const renderItem = ({ item }) => (
-    <ListItem
+    <Catch
       species={item.species}
       weight={item.weight}
+      coordinates={item.coordinates}
+      weather={item.weather}
+      id={item.id}
+      removeCatch={removeCatch}
     />
   );
+
+  const viewToShow = fishCatches.length === 0
+    ? <FlatList 
+        data={fishCatches}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+    : <Text>No added catches</Text>;
 
   return (
     <View style={styles.container}>
       <Text>Catches</Text>
-      <FlatList 
-        data={catches}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      {catches.length === 0
+        ? <Text>No catches added</Text>
+        : <FlatList 
+            data={catches}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
+      }
     </View>
   );
 };

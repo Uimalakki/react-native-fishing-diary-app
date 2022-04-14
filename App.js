@@ -1,25 +1,33 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-import React, { useState } from 'react';
-import type {Node} from 'react';
+import React, { useState, useEffect } from 'react';
+import type { Node } from 'react';
 import CatchList from './components/CatchList';
 import AddForm from './components/AddForm';
 import FloatingButton from './components/FloatingButton';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  ImageBackground,
-} from 'react-native';
+import Notification from './components/Notification';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, 
+         Text, View, ImageBackground } from 'react-native';
+import ModalView from './components/ModalView';
+import encryptedStorage from './services/encryptedStorage';
+import { getAllCatches } from './services/Database.js';
 
-const listOfCatches = require('./mockdata/catchlist.json');
+const listOfCatches = getAllCatches();
 
 const App: () => Node = () => {
   const [changeView, setChangeView] = useState(true);
-  const [catches, setCatches] = useState(listOfCatches);
+  const [fishCatches, setFishCatches] = useState(listOfCatches);
   const [buttonIcon, setButtonIcon] = useState('plus');
+  const [apiKey, setApiKey] = useState(null);
+  const [modalViewVisible, setModalViewVisible] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  useEffect(() => {
+    if (apiKey) {
+      encryptedStorage.saveValue(apiKey);
+      console.log(apiKey);
+    }
+  }, [apiKey]);
 
   const handleView = () => {
     if (changeView) {
@@ -37,13 +45,27 @@ const App: () => Node = () => {
         source={require('./assets/images/tausta.jpg')}
         style={styles.backgroundImage}
         blurRadius={5}>
-      <Text style={styles.sectionTitle}>Catch app</Text>
+      <Text style={styles.sectionTitle}>Fish catches app</Text>
       {(changeView) 
-        ? <CatchList catches={catches} /> 
-        : <AddForm 
-            addCatch={setCatches}
-            catches={catches} 
-          />}
+        ? <CatchList catches={fishCatches} /> 
+        : <View>
+            <AddForm 
+              addCatch={setFishCatches}
+              catches={fishCatches}
+              apiKey={apiKey}
+              setModalViewVisible={setModalViewVisible}
+              setMessage={setMessage}
+            />
+            <ModalView 
+              modalVisible={modalViewVisible}
+              setModalVisible={setModalViewVisible}
+              setApiKey={setApiKey}
+            />
+          </View>}
+      <Notification  
+        setMessage={setMessage}
+        message={message}
+      />
       <FloatingButton 
         buttonFunction={handleView} 
         icon={buttonIcon}

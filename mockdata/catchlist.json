@@ -1,22 +1,62 @@
 [
     {
-        "id": "as8dasdkjashd8hsad",
+        "id": 34534534643634634634,
         "species": "zander",
-        "weight": 0.5
+        "weight": 0.5,
+        "coordinates": {
+            "latitude": 60.3775973,
+            "longitude": 25.789798
+        },
+        "weather": {
+            "temperature": 4.44,
+            "description": "few clouds",
+            "wind": 7.72,
+            "icon": "02d"
+        }
     },
     {
-        "id": "drgfasdkjashd8hsad",
+        "id": 6756756756745645,
         "species": "zander",
-        "weight": 1
+        "weight": 1,
+        "coordinates": {
+            "latitude": 60.3775973,
+            "longitude": 25.789798
+        },
+        "weather": {
+            "temperature": 4.44,
+            "description": "few clouds",
+            "wind": 7.72,
+            "icon": "02d"
+        }
     },
     {
-        "id": "as8dasdkjashd8zxcv",
+        "id": 4546547345343634634,
         "species": "pike",
-        "weight": 1
+        "weight": 1,
+        "coordinates": {
+            "latitude": 60.3775973,
+            "longitude": 25.789798
+        },
+        "weather": {
+            "temperature": 4.44,
+            "description": "few clouds",
+            "wind": 7.72,
+            "icon": "02d"
+        }
     },
     {
-        "id": "as8dasdkjashdthrdd",
+        "id": 5676535345345234554,
         "species": "salmon",
-        "weight": 3
+        "weight": 3,
+        "coordinates": {
+            "latitude": 60.3775973,
+            "longitude": 25.789798
+        },
+        "weather": {
+            "temperature": 4.44,
+            "description": "few clouds",
+            "wind": 7.72,
+            "icon": "02d"
+        }
     }
 ]

@@ -2,13 +2,28 @@
 import React from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import helper from '../utils/helper.js';
+import LocationButton from './LocationButton.js';
+import WeatherButton from './WeatherButton.js';
+import { addCatch } from '../services/Database.js';
 
 class AddForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      catch: {},
+      catch: {
+        date: Date.now(),
+        coordinates: {
+          latitude: 0,
+          longitude: 0,
+        },
+        weather: {
+          temperature: 0,
+          description: 'n/a',
+          wind: 0,
+          icon: 'n/a',
+        },
+      },
     };
   }
 
@@ -20,15 +35,54 @@ class AddForm extends React.Component {
 
   handleWeight = (text) => {
     let newCatch = this.state.catch;
-    newCatch.weight = text;
+    newCatch.weight = Number(text);
     this.setState({ catch: newCatch });
   }
 
-  handleAddNewCatch = () => {
+  handleAddNewCatch = async () => {
     let newCatch = this.state.catch;
     newCatch.id = helper.uniqueID();
     this.setState({ catch: newCatch });
     this.props.addCatch(oldCatches => [...oldCatches, newCatch]);
+    await addCatch(this.state.catch);
+  }
+
+  addCatchToDB = async () => {
+    let newCatch = this.state.catch;
+    if (!newCatch.coordinates) {
+
+    }
+    newCatch.id = helper.uniqueID();
+    this.setState({ catch: newCatch });
+    await addCatch(this.state.catch);
+  }
+
+
+  handleLocating = async (coordinatesObject) => {
+    let newCatch = this.state.catch;
+    newCatch.coordinates = {
+      latitude: coordinatesObject.latitude,
+      longitude: coordinatesObject.longitude,
+    };
+    console.log('addFrom handleLoccating' + JSON.stringify(newCatch.coordinates));
+
+    this.setState({ catch: newCatch });
+  }
+
+  handleWeatherInfo = (weatherObject) => {
+    if (!this.props.apiKey) {
+      this.props.setModalViewVisible(true);
+    } else {
+      console.log('AddForm.handleWeatherInfo ' + JSON.stringify(weatherObject));
+      let newCatch = this.state.catch;
+      newCatch.weather = {
+        temperature: weatherObject.main.temp,
+        description: weatherObject.weather[0].description,
+        wind: weatherObject.wind.speed,
+        icon: weatherObject.weather[0].icon,
+      };
+      this.setState({ catch: newCatch });
+    }
   }
 
   render() {
@@ -45,17 +99,21 @@ class AddForm extends React.Component {
           placeholder="weight"
           onChangeText={this.handleWeight}
         />
-        <TouchableOpacity
-          style={styles.secondaryButton}>
-          <Text style={styles.secondaryButtonText}>Get GPS location</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.secondaryButton}>
-          <Text style={styles.secondaryButtonText}>Get weather info</Text>
-        </TouchableOpacity>
+        <LocationButton
+          setLocation={this.handleLocating}
+          style={styles.secondaryButton}
+          sendNotification={this.props.setMessage}
+        />
+        <WeatherButton
+          setWeather={this.handleWeatherInfo}
+          coordinates={this.state.catch.coordinates}
+          style={styles.secondaryButton}
+          setModalViewVisible={this.props.setModalViewVisible}
+          apiKey={this.props.apiKey}
+        />
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={this.handleAddNewCatch}
+          onPress={this.addCatchToDB}
         >
           <Text style={styles.submitButtonText}>Add catch</Text>
         </TouchableOpacity>
