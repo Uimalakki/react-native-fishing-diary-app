@@ -18,6 +18,6 @@ First prototype of the UI:
 - [x] Weather api support
 - [ ] Refactoring
 - [ ] More functionilities?
-- [ ] Tests and more refactoring...
+- [ ] Final tests
 - [ ] Finish
 
