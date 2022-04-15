@@ -17,5 +17,7 @@ First prototype of the UI:
 - [x] Location support
 - [x] Weather api support
 - [ ] Refactoring
-- [ ] Tests
+- [ ] More functionilities?
+- [ ] Tests and more refactoring...
+- [ ] Finish
 
