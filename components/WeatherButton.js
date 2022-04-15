@@ -3,21 +3,15 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import weatherService from '../services/weatherInfo.js';
 
-const WeatherButton = ({ setWeather, coordinates, style, setModalViewVisible, apiKey }) => {
+const WeatherButton = ({ setWeather, coordinates, style, setModalViewVisible, apiKey, sendNotification }) => {
 
   const handlePress = () => {
-    if (apiKey) {
-      getWeatherInfo();
-    } else {
+    if (coordinates.latitude === 999) {
+      sendNotification('Please get location first.');
+    } else if (!apiKey) {
       setModalViewVisible(true);
-    }
-  };
-
-  const buttonDisable = () => {
-    if (coordinates) {
-      return true;
     } else {
-      return false;
+      getWeatherInfo();
     }
   };
 

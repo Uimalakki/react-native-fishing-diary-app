@@ -28,13 +28,13 @@ const getWeatherInfoByLatAndLon = async (lat, lon) => {
   }*/
 };
 
-const getCurrentWeather = async (lat, lon) => {
+const getCurrentWeather = async (latitude, longitude) => {
 
   const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
   const apiKey = await encryptedStorage.getValue();
 
   const request = axios
-    .get(baseUrl + `?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+    .get(baseUrl + `?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
 
   return request.then(response => response.data);
 };

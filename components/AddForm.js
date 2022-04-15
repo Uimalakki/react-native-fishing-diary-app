@@ -14,8 +14,8 @@ class AddForm extends React.Component {
       catch: {
         date: Date.now(),
         coordinates: {
-          latitude: 0,
-          longitude: 0,
+          latitude: 999,
+          longitude: 999,
         },
         weather: {
           temperature: 0,
@@ -110,6 +110,7 @@ class AddForm extends React.Component {
           style={styles.secondaryButton}
           setModalViewVisible={this.props.setModalViewVisible}
           apiKey={this.props.apiKey}
+          sendNotification={this.props.setMessage}
         />
         <TouchableOpacity
           style={styles.submitButton}

@@ -12,6 +12,10 @@ const ModalView = ({ modalVisible, setModalVisible, setApiKey }) => {
 
   const handlePress = () => {
     setApiKey(textFromInput);
+    handleClosing();
+  };
+
+  const handleClosing = () => {
     setModalVisible(!modalVisible);
   };
 
@@ -27,6 +31,9 @@ const ModalView = ({ modalVisible, setModalVisible, setApiKey }) => {
             placeholder="enter openweathermap api-key"
             onChangeText={handleChange}
           />
+          <TouchableOpacity onPress={handleClosing}>
+            <Text>Cancel</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={handlePress}
           >

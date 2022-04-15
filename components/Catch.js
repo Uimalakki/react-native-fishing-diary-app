@@ -15,17 +15,28 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
     removeCatch(id);
   };
 
+  const showWeatherDetails = weather.description !== 'n/a'
+    ? <>
+        {'\n'}weather:
+        {'\n'}temperature: {weather.temperature}
+        {'\n'}description: {weather.description}
+        {'\n'}wind: {weather.wind}
+      </>
+    : <></>;
+
+  const showCoordinates = coordinates.latitude !== 999
+    ? <>
+        {'\n'}latitude: {coordinates.latitude}
+        {'\n'}longitude: {coordinates.longitude}
+      </>
+    : <></>;
+
   const viewToShow = showAll
     ? <View>
         <Text style={styles.item} onPress={toggleShowAll}>
           {species}, {weight}kg
-          {'\n'}latitude: {coordinates.latitude}
-          {'\n'}longitude: {coordinates.longitude}
-          {'\n'}weather:
-          {'\n'}temperature: {weather.temperature}
-          {'\n'}description: {weather.description}
-          {'\n'}wind: {weather.wind}
-          {'\n'}icon: {weather.icon}
+          {showCoordinates}
+          {showWeatherDetails}
           {'\n'}<Button title="remove" onPress={handleDeletingCatch}/>
         </Text>
 
