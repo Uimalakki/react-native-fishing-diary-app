@@ -1,4 +1,4 @@
-# react-native-rehearse
+# fishing diary app
 
 Main purpose of this project is to brush up the undersigned's rusted react-native skills.
   
@@ -9,4 +9,9 @@ First prototype of the UI:
 
 ![UI_Add](assets/images/protoAdd.JPG)
 ![UI_List](assets/images/protoList.JPG)
+
+## Progress:
+- [x] Views for list and form
+- [x] Logic to views
+- [ ]  
 
