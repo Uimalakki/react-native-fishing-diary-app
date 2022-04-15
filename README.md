@@ -10,8 +10,12 @@ First prototype of the UI:
 ![UI_Add](assets/images/protoAdd.JPG)
 ![UI_List](assets/images/protoList.JPG)
 
-## Progress:
-- [x] Views for list and form
-- [x] Logic to views
-- [ ]  
+## Project progress:
+- [x] View components for list and form
+- [x] Logic to view-components
+- [x] Database
+- [x] Location support
+- [x] Weather api support
+- [ ] Refactoring
+- [ ] Tests
 
