@@ -21,12 +21,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 16,
     right: 0,
+    bottom: 20,
     ...Platform.select({
-      android: {
-        bottom: 20,
-      },
       ios: {
-        top: 10,
+        backgroundColor: '#5856d6',
       },
     }),
   },

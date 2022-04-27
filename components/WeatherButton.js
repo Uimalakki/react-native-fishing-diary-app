@@ -7,7 +7,7 @@ const WeatherButton = ({ setWeather, coordinates, style, setModalViewVisible, ap
 
   const handlePress = () => {
     if (coordinates.latitude === 999) {
-      sendNotification('Please get location first.');
+      sendNotification('Please locate the device first.');
     } else if (!apiKey) {
       setModalViewVisible(true);
     } else {
@@ -16,16 +16,17 @@ const WeatherButton = ({ setWeather, coordinates, style, setModalViewVisible, ap
   };
 
   const getWeatherInfo = () => {
-    console.log('WeatherButton - getWeatherInfo - start');
     const latitude = coordinates.latitude;
     const longitude = coordinates.longitude;
 
     weatherService.getCurrentWeather(latitude, longitude)
       .then(weatherObject => {
-        setWeather(weatherObject);
-        console.log('weatherservise is a success!');
+        if (weatherObject.length === 0) { // tämä if-lause ei ole vielä testattu
+          sendNotification('Faulty API-key!');
+        } else {
+          setWeather(weatherObject);
+        }
     });
-    console.log('Weatherbutton onpress end');
   };
 
   return (

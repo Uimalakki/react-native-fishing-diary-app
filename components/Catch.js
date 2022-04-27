@@ -32,8 +32,8 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
     : <></>;
 
   const viewToShow = showAll
-    ? <View>
-        <Text style={styles.item} onPress={toggleShowAll}>
+    ? <View style={styles.selectedItem}>
+        <Text style={styles.itemTitle} onPress={toggleShowAll}>
           {species}, {weight}kg
           {showCoordinates}
           {showWeatherDetails}
@@ -41,8 +41,8 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
         </Text>
 
       </View>
-    : <View>
-        <Text style={styles.item} onPress={toggleShowAll}>
+    : <View style={styles.item}>
+        <Text style={styles.itemTitle} onPress={toggleShowAll}>
           {species}, {weight}kg
         </Text>
       </View>;
@@ -58,16 +58,60 @@ export default Catch;
 
 const styles = StyleSheet.create({
   item: {
+    borderRadius: 20,
     ...Platform.select({
       android: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: '#5e639a',
+        elevation: 10,
       },
       ios: {
         backgroundColor: '#5ac8fa',
+        shadowColor: 'rgb(0, 0, 0)',
+        shadowOffset: {
+          width: 3,
+          height: 3,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
       },
     }),
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
   },
+  selectedItem: {
+    borderRadius: 20,
+    borderColor: 'white',
+    borderWidth: 2,
+    ...Platform.select({
+      android: {
+        backgroundColor: '#5e639a',
+        elevation: 10,
+      },
+      ios: {
+        backgroundColor: '#5ac8fa',
+        shadowColor: 'rgb(0, 0, 0)',
+        shadowOffset: {
+          width: 3,
+          height: 3,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+      },
+    }),
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  itemTitle: {
+    ...Platform.select({
+      android: {
+        color: 'white',
+      },
+      ios: {
+        color: 'black',
+      },
+    }),
+  },
+
 });

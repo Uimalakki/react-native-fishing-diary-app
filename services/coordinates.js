@@ -48,12 +48,7 @@ const testCoord = (setPosition) => {
     setPosition(coordinates);
   })
   .catch(error => {
-    console.warn(error);
-    const coordinates = {
-      latitude: 'n/a',
-      longitude: 'n/a',
-    };
-    setPosition(coordinates);
+    console.log(error);
   });
 };
 

@@ -6,7 +6,7 @@ import CatchList from './components/CatchList';
 import AddForm from './components/AddForm';
 import FloatingButton from './components/FloatingButton';
 import Notification from './components/Notification';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, 
+import { SafeAreaView, StyleSheet, 
          Text, View, ImageBackground } from 'react-native';
 import ModalView from './components/ModalView';
 import encryptedStorage from './services/encryptedStorage';
@@ -45,7 +45,10 @@ const App: () => Node = () => {
         source={require('./assets/images/tausta.jpg')}
         style={styles.backgroundImage}
         blurRadius={5}>
-      <Text style={styles.sectionTitle}>Fish catches app</Text>
+      <Notification  
+        setMessage={setMessage}
+        message={message}
+      />
       {(changeView) 
         ? <CatchList catches={fishCatches} /> 
         : <View>
@@ -62,10 +65,7 @@ const App: () => Node = () => {
               setApiKey={setApiKey}
             />
           </View>}
-      <Notification  
-        setMessage={setMessage}
-        message={message}
-      />
+      
       <FloatingButton 
         buttonFunction={handleView} 
         icon={buttonIcon}

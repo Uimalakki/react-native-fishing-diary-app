@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Catch from './Catch';
 import { View, StyleSheet, Text, FlatList, StatusBar } from 'react-native';
 import { getAllCatches, deleteCatchById } from '../services/Database';
@@ -35,7 +35,7 @@ const CatchList = ({ catches }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Catches</Text>
+      <Text style={styles.header}>Catchlist</Text>
       {catches.length === 0
         ? <Text>No catches added</Text>
         : <FlatList 
@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+  },
+  header: {
+    margin: 24,
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   item: {
     backgroundColor: '#f9c2ff',

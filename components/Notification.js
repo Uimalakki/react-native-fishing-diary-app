@@ -26,8 +26,9 @@ const Notification = ({ setMessage, message }) => {
             <Text>{message}</Text>
           <TouchableOpacity
             onPress={handlePress}
+            style={styles.modalButton}
           >
-            <Text>Got it</Text>
+            <Text>Close</Text>
           </TouchableOpacity>
         </View>
       </Modal>
@@ -37,9 +38,11 @@ const Notification = ({ setMessage, message }) => {
 
 const styles = StyleSheet.create({
   modalView: {
-    margin: 20,
-    backgroundColor: 'white',
+    margin: 30,
+    marginTop: 200,
+    backgroundColor: '#D3F0FE',
     borderRadius: 20,
+    borderWidth: 1,
     padding: 35,
     alignItems: 'center',
     shadowColor: '#000',
@@ -51,8 +54,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  secondaryButton: {
+  modalButton: {
     backgroundColor: '#86DAFB',
+    borderRadius: 10,
     padding: 10,
     margin: 15,
     height: 40,

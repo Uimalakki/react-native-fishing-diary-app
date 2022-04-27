@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, Platform } from 'react-native';
 import helper from '../utils/helper.js';
 import LocationButton from './LocationButton.js';
 import WeatherButton from './WeatherButton.js';
@@ -27,13 +27,13 @@ class AddForm extends React.Component {
     };
   }
 
-  handleSpecies = (text) => {
+  handleSpeciesInput = (text) => {
     let newCatch = this.state.catch;
     newCatch.species = text;
     this.setState({ catch: newCatch });
   }
 
-  handleWeight = (text) => {
+  handleWeightInput = (text) => {
     let newCatch = this.state.catch;
     newCatch.weight = Number(text);
     this.setState({ catch: newCatch });
@@ -48,15 +48,30 @@ class AddForm extends React.Component {
   }
 
   addCatchToDB = async () => {
-    let newCatch = this.state.catch;
-    if (!newCatch.coordinates) {
+    if (this.state.catch.species === undefined || this.state.catch.weight === undefined) {
+      this.props.setMessage('species and weight fields must be populated!');
+    } else {
+      let newCatch = this.state.catch;
+      if (!newCatch.coordinates) {
 
+      }
+      newCatch.id = helper.uniqueID();
+      this.setState({ catch: newCatch });
+      await addCatch(this.state.catch);
     }
-    newCatch.id = helper.uniqueID();
-    this.setState({ catch: newCatch });
-    await addCatch(this.state.catch);
   }
 
+  checkInputFields = () => {
+    if (!this.state.species) {
+      this.props.setMessage('species field must be populated!');
+      return false;
+    }
+    if (!this.state.weight) {
+      this.props.setMessage('weight field must be populated!');
+      return false;
+    }
+    return true;
+  }
 
   handleLocating = async (coordinatesObject) => {
     let newCatch = this.state.catch;
@@ -92,17 +107,18 @@ class AddForm extends React.Component {
         <TextInput
           style={styles.input}
           placeholder="species"
-          onChangeText={this.handleSpecies}
+          onChangeText={this.handleSpeciesInput}
         />
         <TextInput
           style={styles.input}
           placeholder="weight"
-          onChangeText={this.handleWeight}
+          onChangeText={this.handleWeightInput}
         />
         <LocationButton
           setLocation={this.handleLocating}
           style={styles.secondaryButton}
           sendNotification={this.props.setMessage}
+          coordinates={this.state.catch.coordinates}
         />
         <WeatherButton
           setWeather={this.handleWeatherInfo}
@@ -132,20 +148,59 @@ const styles = StyleSheet.create({
   input: {
     margin: 15,
     height: 40,
-    borderColor: '#7a42f4',
     borderWidth: 1,
+    ...Platform.select({
+      android: {
+        borderColor: '#7a42f4',
+      },
+      ios: {
+        borderColor: 'white',
+      },
+    }),
   },
   submitButton: {
-    backgroundColor: '#A686F4',
-    padding: 10,
-    margin: 15,
-    height: 40,
+    borderRadius: 20,
+    ...Platform.select({
+      android: {
+        backgroundColor: '#5e639a',
+        elevation: 10,
+      },
+      ios: {
+        backgroundColor: '#5ac8fa',
+        shadowColor: 'rgb(0, 0, 0)',
+        shadowOffset: {
+          width: 3,
+          height: 3,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+      },
+    }),
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
   },
   secondaryButton: {
-    backgroundColor: '#86DAFB',
-    padding: 10,
-    margin: 15,
-    height: 40,
+    borderRadius: 20,
+    ...Platform.select({
+      android: {
+        backgroundColor: '#86DAFB',
+        elevation: 10,
+      },
+      ios: {
+        backgroundColor: '#a2b7d0',
+        shadowColor: 'rgb(0, 0, 0)',
+        shadowOffset: {
+          width: 3,
+          height: 3,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+      },
+    }),
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
   },
   header: {
     fontSize: 20,
@@ -154,6 +209,8 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   secondaryButtonText: {
     color: 'grey',
