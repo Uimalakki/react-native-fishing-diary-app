@@ -21,3 +21,9 @@ First prototype of the UI:
 - [ ] Final tests
 - [ ] Finish
 
+## Credits
+### Weather data:
+[openweathermap](https://openweathermap.org/)
+
+### Icons:
+[react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
