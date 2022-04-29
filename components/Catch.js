@@ -34,7 +34,7 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
   const viewToShow = showAll
     ? <View style={styles.selectedItem}>
         <Text style={styles.itemTitle} onPress={toggleShowAll}>
-          {species}, {weight}kg
+          <Text style={styles.boldFont}>{species}, {weight}kg</Text>
           {showCoordinates}
           {showWeatherDetails}
           {'\n'}<Button title="remove" onPress={handleDeletingCatch}/>
@@ -57,6 +57,9 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
 export default Catch;
 
 const styles = StyleSheet.create({
+  boldFont: {
+    fontWeight: 'bold',
+  },
   item: {
     borderRadius: 20,
     ...Platform.select({
