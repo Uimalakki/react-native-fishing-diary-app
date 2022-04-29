@@ -2,8 +2,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Platform, Button } from 'react-native';
 import { getAllCatches, deleteCatchById } from '../services/Database';
+import axios from 'axios';
 
 const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
+
+  const baseUrl = 'https://stormy-escarpment-48173.herokuapp.com/api/catches';
 
   const [showAll, setShowAll] = useState(false);
 
@@ -13,6 +16,8 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
 
   const handleDeletingCatch = () => {
     removeCatch(id);
+
+    //axios.delete(`${baseUrl}/${id}`);
   };
 
   const showWeatherDetails = weather.description !== 'n/a'

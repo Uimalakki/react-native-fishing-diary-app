@@ -5,6 +5,9 @@ import helper from '../utils/helper.js';
 import LocationButton from './LocationButton.js';
 import WeatherButton from './WeatherButton.js';
 import { addCatch } from '../services/Database.js';
+import axios from 'axios';
+
+const baseUrl = 'https://stormy-escarpment-48173.herokuapp.com/api/catches';
 
 class AddForm extends React.Component {
   constructor(props) {
@@ -55,9 +58,12 @@ class AddForm extends React.Component {
       if (!newCatch.coordinates) {
 
       }
-      newCatch.id = helper.uniqueID();
+      /*newCatch.id = helper.uniqueID();
       this.setState({ catch: newCatch });
-      await addCatch(this.state.catch);
+      await addCatch(this.state.catch);*/
+      axios.post(baseUrl, newCatch).then(response => {
+        console.log(response.data);
+      });
     }
   }
 

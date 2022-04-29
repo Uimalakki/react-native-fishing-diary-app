@@ -11,8 +11,10 @@ import { SafeAreaView, StyleSheet,
 import ModalView from './components/ModalView';
 import encryptedStorage from './services/encryptedStorage';
 import { getAllCatches } from './services/Database.js';
+import catchesAxios from './services/catchesAxios';
 
-const listOfCatches = getAllCatches();
+//const listOfCatches = getAllCatches();
+const listOfCatches = catchesAxios.getAll();
 
 const App: () => Node = () => {
   const [changeView, setChangeView] = useState(true);
@@ -28,6 +30,10 @@ const App: () => Node = () => {
       console.log(apiKey);
     }
   }, [apiKey]);
+
+  useEffect(() => {
+    console.log(catchesAxios.getAll2());
+  }, []);
 
   const handleView = () => {
     if (changeView) {

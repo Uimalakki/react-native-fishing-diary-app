@@ -1,17 +1,31 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Catch from './Catch';
 import { View, StyleSheet, Text, FlatList, StatusBar } from 'react-native';
 import { getAllCatches, deleteCatchById } from '../services/Database';
+import axios from 'axios';
 
 const CatchList = ({ catches }) => {
 
-  const [fishCatches, setFishCatches] = useState(catches);
+  const baseUrl = 'https://stormy-escarpment-48173.herokuapp.com/api/catches';
+
+  const [fishCatches, setFishCatches] = useState([]);
+
+  useEffect(() => {
+    getCatches();
+  }, []);
+
+  const getCatches = () => {
+    axios.get(baseUrl).then(response => {
+      setFishCatches(response.data);
+    });
+  };
 
   const removeCatch = (id) => {
-    deleteCatchById(id);
-    setFishCatches(getAllCatches());
+    //deleteCatchById(id);
+    axios.delete(`${baseUrl}/${id}`);
+    getCatches();
   };
   
   const renderItem = ({ item }) => (
@@ -36,10 +50,10 @@ const CatchList = ({ catches }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Catchlist</Text>
-      {catches.length === 0
+      {fishCatches.length === 0
         ? <Text>No catches added</Text>
         : <FlatList 
-            data={catches}
+            data={fishCatches}
             renderItem={renderItem}
             keyExtractor={item => item.id}
           />
