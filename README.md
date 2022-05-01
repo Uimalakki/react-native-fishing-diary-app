@@ -7,8 +7,7 @@ App will use phone's GPS sensor, if desired/available and some weather api.
 
 First prototype of the UI:
 
-![UI_Add](assets/images/protoAdd.JPG)
-![UI_List](assets/images/protoList.JPG)
+![UI_Add](assets/images/protoAdd.JPG) ![UI_List](assets/images/protoList.JPG)
 
 ## Project progress:
 - [x] View components for list and form
