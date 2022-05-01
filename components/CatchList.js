@@ -5,9 +5,9 @@ import Catch from './Catch';
 import { View, StyleSheet, Text, FlatList, StatusBar } from 'react-native';
 import { getAllCatches, deleteCatchById } from '../services/Database';
 
-const CatchList = ({ catches }) => {
+const CatchList = () => {
 
-  const [fishCatches, setFishCatches] = useState(catches);
+  const [fishCatches, setFishCatches] = useState(getAllCatches());
 
   const removeCatch = (id) => {
     deleteCatchById(id);
@@ -25,7 +25,7 @@ const CatchList = ({ catches }) => {
     />
   );
 
-  const viewToShow = fishCatches.length === 0
+  const viewToShow = fishCatches.length !== 0
     ? <FlatList 
         data={fishCatches}
         renderItem={renderItem}
@@ -36,14 +36,7 @@ const CatchList = ({ catches }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Catchlist</Text>
-      {catches.length === 0
-        ? <Text>No catches added</Text>
-        : <FlatList 
-            data={catches}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
-      }
+      {viewToShow}
     </View>
   );
 };

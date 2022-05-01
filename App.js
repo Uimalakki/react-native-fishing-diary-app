@@ -6,17 +6,12 @@ import CatchList from './components/CatchList';
 import AddForm from './components/AddForm';
 import FloatingButton from './components/FloatingButton';
 import Notification from './components/Notification';
-import { SafeAreaView, StyleSheet, 
-         Text, View, ImageBackground } from 'react-native';
+import { SafeAreaView, StyleSheet, View, ImageBackground } from 'react-native';
 import ModalView from './components/ModalView';
 import encryptedStorage from './services/encryptedStorage';
-import { getAllCatches } from './services/Database.js';
-
-const listOfCatches = getAllCatches();
 
 const App: () => Node = () => {
   const [changeView, setChangeView] = useState(true);
-  const [fishCatches, setFishCatches] = useState(listOfCatches);
   const [buttonIcon, setButtonIcon] = useState('plus');
   const [apiKey, setApiKey] = useState(null);
   const [modalViewVisible, setModalViewVisible] = useState(false);
@@ -50,11 +45,9 @@ const App: () => Node = () => {
         message={message}
       />
       {(changeView) 
-        ? <CatchList catches={fishCatches} /> 
+        ? <CatchList /> 
         : <View>
             <AddForm 
-              addCatch={setFishCatches}
-              catches={fishCatches}
               apiKey={apiKey}
               setModalViewVisible={setModalViewVisible}
               setMessage={setMessage}
@@ -65,7 +58,6 @@ const App: () => Node = () => {
               setApiKey={setApiKey}
             />
           </View>}
-      
       <FloatingButton 
         buttonFunction={handleView} 
         icon={buttonIcon}

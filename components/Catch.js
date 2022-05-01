@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Platform, Button } from 'react-native';
-import { getAllCatches, deleteCatchById } from '../services/Database';
 
 const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
 

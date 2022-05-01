@@ -6,7 +6,7 @@ import coordinateService from '../services/coordinates.js';
 const LocationButton = ({ coordinates, setLocation, style, sendNotification }) => {
 
   const handlePress = () => {
-    coordinateService.testCoord(setLocation);
+    coordinateService.getCoordinates(setLocation);
     if (coordinates.latitude === 999) {
       sendNotification("Please enable device's location");
     }
