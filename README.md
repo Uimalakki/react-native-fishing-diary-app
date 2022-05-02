@@ -1,7 +1,7 @@
 # fishing diary app
 
-This branch uses external MongoDb database
+Unlike main branch this one uses external MongoDb database 
 
-Code base needs refactoring
+Code base needs badly refactoring, changes from original branch were made in a hurry after midnight...
 
 
