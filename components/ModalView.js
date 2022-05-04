@@ -1,12 +1,18 @@
-/* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
-import { View, Text, TextInput, Modal, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Modal,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 
-const ModalView = ({ modalVisible, setModalVisible, setApiKey }) => {
-
+const ModalView = ({modalVisible, setModalVisible, setApiKey}) => {
   const [textFromInput, setTextFromInput] = useState('');
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setTextFromInput(event);
   };
 
@@ -21,18 +27,13 @@ const ModalView = ({ modalVisible, setModalVisible, setApiKey }) => {
 
   return (
     <View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-      >
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalView}>
           <Text style={styles.titleText}>Please enter an API-key</Text>
           <Text>Get one from:</Text>
           <Text
             style={styles.linkText}
-            onPress={() => Linking.openURL('https://openweathermap.org/')}
-          >
+            onPress={() => Linking.openURL('https://openweathermap.org/')}>
             https://openweathermap.org/
           </Text>
           <TextInput
@@ -42,14 +43,12 @@ const ModalView = ({ modalVisible, setModalVisible, setApiKey }) => {
           />
           <TouchableOpacity
             onPress={handlePress}
-            style={styles.modalPrimaryButton}
-          >
+            style={styles.modalPrimaryButton}>
             <Text>Add</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleClosing}
-            style={styles.modalSecondaryButton}
-          >
+            style={styles.modalSecondaryButton}>
             <Text>Close</Text>
           </TouchableOpacity>
         </View>

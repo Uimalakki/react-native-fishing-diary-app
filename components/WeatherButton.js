@@ -1,10 +1,15 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import weatherService from '../services/weatherInfo.js';
 
-const WeatherButton = ({ setWeather, coordinates, style, setModalViewVisible, apiKey, sendNotification }) => {
-
+const WeatherButton = ({
+  setWeather,
+  coordinates,
+  style,
+  setModalViewVisible,
+  apiKey,
+  sendNotification,
+}) => {
   const handlePress = () => {
     if (coordinates.latitude === 999) {
       sendNotification('Please locate the device first.');
@@ -19,14 +24,16 @@ const WeatherButton = ({ setWeather, coordinates, style, setModalViewVisible, ap
     const latitude = coordinates.latitude;
     const longitude = coordinates.longitude;
 
-    weatherService.getCurrentWeather(latitude, longitude)
+    weatherService
+      .getCurrentWeather(latitude, longitude)
       .then(weatherObject => {
-        if (weatherObject.length === 0) { // tämä if-lause ei ole vielä testattu
+        if (weatherObject.length === 0) {
+          // tämä if-lause ei ole vielä testattu
           sendNotification('Faulty API-key!');
         } else {
           setWeather(weatherObject);
         }
-    });
+      });
   };
 
   return (

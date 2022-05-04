@@ -44,7 +44,7 @@ const App: () => Node = () => {
       <Appbar style={styles.AppbarColor}>
         <Appbar.Action
           style={styles.menuRight}
-          icon="menu"
+          icon="key"
           onPress={() => setModalViewVisible(true)}
         />
         <Text style={styles.AppbarHeader}>CatchLog</Text>

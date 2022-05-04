@@ -1,12 +1,13 @@
-/* eslint-disable prettier/prettier */
 import EncryptedStorage from 'react-native-encrypted-storage';
 
-const saveValue = async (value) => {
+const saveValue = async value => {
   try {
     await EncryptedStorage.setItem('api_key', value);
     console.log('api-key stored to encrypted storage');
   } catch (error) {
-    console.log('Error with storing a value to encrypted storage' + JSON.stringify(error));
+    console.log(
+      'Error with storing a value to encrypted storage' + JSON.stringify(error),
+    );
   }
 };
 
@@ -19,8 +20,11 @@ const getValue = async () => {
     }
     return null;
   } catch (error) {
-    console.log('Error with fetching a value from encrypted storage' + JSON.stringify(error));
+    console.log(
+      'Error with fetching a value from encrypted storage' +
+        JSON.stringify(error),
+    );
   }
 };
 
-export default { saveValue, getValue };
+export default {saveValue, getValue};

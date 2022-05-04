@@ -1,9 +1,7 @@
-/* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Platform, Button } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, Platform, Button} from 'react-native';
 
-const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
-
+const Catch = ({species, weight, coordinates, weather, id, removeCatch}) => {
   const [showAll, setShowAll] = useState(false);
 
   const toggleShowAll = () => {
@@ -14,43 +12,49 @@ const Catch = ({ species, weight, coordinates, weather, id, removeCatch }) => {
     removeCatch(id);
   };
 
-  const showWeatherDetails = weather.description !== 'n/a'
-    ? <>
+  const showWeatherDetails =
+    weather.description !== 'n/a' ? (
+      <>
         {'\n'}weather:
         {'\n'}temperature: {weather.temperature}
         {'\n'}description: {weather.description}
         {'\n'}wind: {weather.wind}
       </>
-    : <></>;
+    ) : (
+      <></>
+    );
 
-  const showCoordinates = coordinates.latitude !== 999
-    ? <>
+  const showCoordinates =
+    coordinates.latitude !== 999 ? (
+      <>
         {'\n'}latitude: {coordinates.latitude}
         {'\n'}longitude: {coordinates.longitude}
       </>
-    : <></>;
+    ) : (
+      <></>
+    );
 
-  const viewToShow = showAll
-    ? <View style={styles.selectedItem}>
-        <Text style={styles.itemTitle} onPress={toggleShowAll}>
-          <Text style={styles.boldFont}>{species}, {weight}kg</Text>
-          {showCoordinates}
-          {showWeatherDetails}
-          {'\n'}<Button title="remove" onPress={handleDeletingCatch}/>
-        </Text>
-
-      </View>
-    : <View style={styles.item}>
-        <Text style={styles.itemTitle} onPress={toggleShowAll}>
+  const viewToShow = showAll ? (
+    <View style={styles.selectedItem}>
+      <Text style={styles.itemTitle} onPress={toggleShowAll}>
+        <Text style={styles.boldFont}>
           {species}, {weight}kg
         </Text>
-      </View>;
-
-  return (
-    <View>
-      {viewToShow}
+        {showCoordinates}
+        {showWeatherDetails}
+        {'\n'}
+        <Button title="remove" onPress={handleDeletingCatch} />
+      </Text>
+    </View>
+  ) : (
+    <View style={styles.item}>
+      <Text style={styles.itemTitle} onPress={toggleShowAll}>
+        {species}, {weight}kg
+      </Text>
     </View>
   );
+
+  return <View>{viewToShow}</View>;
 };
 
 export default Catch;
@@ -115,5 +119,4 @@ const styles = StyleSheet.create({
       },
     }),
   },
-
 });

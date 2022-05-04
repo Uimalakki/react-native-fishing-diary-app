@@ -1,10 +1,13 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import coordinateService from '../services/coordinates.js';
 
-const LocationButton = ({ coordinates, setLocation, style, sendNotification }) => {
-
+const LocationButton = ({
+  coordinates,
+  setLocation,
+  style,
+  sendNotification,
+}) => {
   const handlePress = () => {
     coordinateService.getCoordinates(setLocation);
     if (coordinates.latitude === 999) {
@@ -13,9 +16,7 @@ const LocationButton = ({ coordinates, setLocation, style, sendNotification }) =
   };
 
   return (
-    <TouchableOpacity
-      onPress={handlePress}
-      style={style}>
+    <TouchableOpacity onPress={handlePress} style={style}>
       <Text>Get location</Text>
     </TouchableOpacity>
   );

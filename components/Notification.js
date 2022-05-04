@@ -1,33 +1,24 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, Text, Modal, StyleSheet, TouchableOpacity } from 'react-native';
+import {View, Text, Modal, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Notification = ({ setMessage, message }) => {
-
+const Notification = ({setMessage, message}) => {
   const handlePress = () => {
     setMessage(null);
   };
 
   const setVisiblee = () => {
     if (message) {
-        return true;
+      return true;
     }
     return false;
   };
 
   return (
     <View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={setVisiblee()}
-      >
+      <Modal animationType="slide" transparent={true} visible={setVisiblee()}>
         <View style={styles.modalView}>
-            <Text>{message}</Text>
-          <TouchableOpacity
-            onPress={handlePress}
-            style={styles.modalButton}
-          >
+          <Text>{message}</Text>
+          <TouchableOpacity onPress={handlePress} style={styles.modalButton}>
             <Text>Close</Text>
           </TouchableOpacity>
         </View>

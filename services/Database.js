@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable prettier/prettier */
 import Realm from 'realm';
 
 export class CatchSchema extends Realm.Object {}
@@ -35,7 +33,11 @@ WeatherSchema.schema = {
   },
 };
 
-let realm = new Realm({ path: 'CatchDb.realm', schema: [CatchSchema, WeatherSchema, CoordinatesSchema ], schemaVersion: 4});
+let realm = new Realm({
+  path: 'CatchDb.realm',
+  schema: [CatchSchema, WeatherSchema, CoordinatesSchema],
+  schemaVersion: 4,
+});
 
 export function getRealm() {
   return realm;
