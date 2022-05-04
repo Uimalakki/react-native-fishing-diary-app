@@ -1,17 +1,9 @@
-/* eslint-disable prettier/prettier */
-import React from "react";
-import { FAB } from 'react-native-paper';
-import { StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import {FAB} from 'react-native-paper';
+import {StyleSheet, Platform} from 'react-native';
 
-const FloatingButton = ({ buttonFunction, icon }) => {
-
-  return (
-    <FAB
-      style={styles.fab}
-      icon={icon}
-      onPress={buttonFunction}
-    />
-  );
+const FloatingButton = ({buttonFunction, icon}) => {
+  return <FAB style={styles.fab} icon={icon} onPress={buttonFunction} />;
 };
 
 export default FloatingButton;

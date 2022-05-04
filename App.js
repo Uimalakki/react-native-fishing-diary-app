@@ -1,14 +1,19 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
-import React, { useState, useEffect } from 'react';
-import type { Node } from 'react';
+import React, {useState, useEffect} from 'react';
+import type {Node} from 'react';
 import CatchList from './components/CatchList';
 import AddForm from './components/AddForm';
 import FloatingButton from './components/FloatingButton';
 import Notification from './components/Notification';
-import { SafeAreaView, StyleSheet, View, ImageBackground } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  ImageBackground,
+} from 'react-native';
 import ModalView from './components/ModalView';
 import encryptedStorage from './services/encryptedStorage';
+import {Appbar} from 'react-native-paper';
 
 const App: () => Node = () => {
   const [changeView, setChangeView] = useState(true);
@@ -36,32 +41,36 @@ const App: () => Node = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground 
+      <Appbar style={styles.AppbarColor}>
+        <Appbar.Action
+          style={styles.menuRight}
+          icon="menu"
+          onPress={() => setModalViewVisible(true)}
+        />
+        <Text style={styles.AppbarHeader}>CatchLog</Text>
+      </Appbar>
+      <ImageBackground
         source={require('./assets/images/tausta.jpg')}
         style={styles.backgroundImage}
         blurRadius={5}>
-      <Notification  
-        setMessage={setMessage}
-        message={message}
-      />
-      {(changeView) 
-        ? <CatchList /> 
-        : <View>
-            <AddForm 
+        <Notification setMessage={setMessage} message={message} />
+        <ModalView
+          modalVisible={modalViewVisible}
+          setModalVisible={setModalViewVisible}
+          setApiKey={setApiKey}
+        />
+        {changeView ? (
+          <CatchList />
+        ) : (
+          <View>
+            <AddForm
               apiKey={apiKey}
               setModalViewVisible={setModalViewVisible}
               setMessage={setMessage}
             />
-            <ModalView 
-              modalVisible={modalViewVisible}
-              setModalVisible={setModalViewVisible}
-              setApiKey={setApiKey}
-            />
-          </View>}
-      <FloatingButton 
-        buttonFunction={handleView} 
-        icon={buttonIcon}
-      />
+          </View>
+        )}
+        <FloatingButton buttonFunction={handleView} icon={buttonIcon} />
       </ImageBackground>
     </SafeAreaView>
   );
@@ -88,6 +97,17 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
+  },
+  menuRight: {
+    position: 'absolute',
+    right: 0,
+  },
+  AppbarHeader: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  AppbarColor: {
+    backgroundColor: '#5e639a',
   },
 });
 

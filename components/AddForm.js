@@ -1,15 +1,25 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, Platform } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import helper from '../utils/helper.js';
 import LocationButton from './LocationButton.js';
 import WeatherButton from './WeatherButton.js';
-import { addCatch } from '../services/Database.js';
+import {addCatch} from '../services/Database.js';
 
 class AddForm extends React.Component {
   constructor(props) {
     super(props);
 
+    this.resetState();
+  }
+
+  resetState = () => {
     this.state = {
       catch: {
         date: Date.now(),
@@ -25,66 +35,70 @@ class AddForm extends React.Component {
         },
       },
     };
-  }
+  };
 
-  handleSpeciesInput = (text) => {
+  handleSpeciesInput = text => {
     let newCatch = this.state.catch;
     newCatch.species = text;
-    this.setState({ catch: newCatch });
-  }
+    this.setState({catch: newCatch});
+  };
 
-  handleWeightInput = (text) => {
+  handleWeightInput = text => {
     let newCatch = this.state.catch;
     newCatch.weight = Number(text);
-    this.setState({ catch: newCatch });
-  }
+    this.setState({catch: newCatch});
+  };
 
   handleAddNewCatch = async () => {
     let newCatch = this.state.catch;
     newCatch.id = helper.uniqueID();
-    this.setState({ catch: newCatch });
+    this.setState({catch: newCatch});
     this.props.addCatch(oldCatches => [...oldCatches, newCatch]);
     await addCatch(this.state.catch);
-  }
+    this.resetState();
+    console.log('Reseted? ' + this.state.catch.species);
+  };
 
   addCatchToDB = async () => {
-    if (this.state.catch.species === undefined || this.state.catch.weight === undefined) {
+    if (
+      this.state.catch.species === undefined ||
+      this.state.catch.weight === undefined
+    ) {
       this.props.setMessage('species and weight fields must be populated!');
+    } else if (isNaN(this.state.catch.weight)) {
+      this.props.setMessage(
+        'weight field must be populated with a number value!',
+      );
     } else {
       let newCatch = this.state.catch;
-      if (!newCatch.coordinates) {
-
-      }
       newCatch.id = helper.uniqueID();
-      this.setState({ catch: newCatch });
+      this.setState({catch: newCatch});
       await addCatch(this.state.catch);
+      this.props.setMessage(
+        'Added new catch: ' +
+          this.state.catch.species +
+          ' ' +
+          this.state.catch.weight +
+          'kg',
+      );
+      this.resetState();
     }
-  }
+  };
 
-  checkInputFields = () => {
-    if (!this.state.species) {
-      this.props.setMessage('species field must be populated!');
-      return false;
-    }
-    if (!this.state.weight) {
-      this.props.setMessage('weight field must be populated!');
-      return false;
-    }
-    return true;
-  }
-
-  handleLocating = async (coordinatesObject) => {
+  handleLocating = async coordinatesObject => {
     let newCatch = this.state.catch;
     newCatch.coordinates = {
       latitude: coordinatesObject.latitude,
       longitude: coordinatesObject.longitude,
     };
-    console.log('addFrom handleLoccating' + JSON.stringify(newCatch.coordinates));
+    console.log(
+      'addFrom handleLoccating' + JSON.stringify(newCatch.coordinates),
+    );
 
-    this.setState({ catch: newCatch });
-  }
+    this.setState({catch: newCatch});
+  };
 
-  handleWeatherInfo = (weatherObject) => {
+  handleWeatherInfo = weatherObject => {
     if (!this.props.apiKey) {
       this.props.setModalViewVisible(true);
     } else {
@@ -96,9 +110,9 @@ class AddForm extends React.Component {
         wind: weatherObject.wind.speed,
         icon: weatherObject.weather[0].icon,
       };
-      this.setState({ catch: newCatch });
+      this.setState({catch: newCatch});
     }
-  }
+  };
 
   render() {
     return (
@@ -108,6 +122,7 @@ class AddForm extends React.Component {
           style={styles.input}
           placeholder="species"
           onChangeText={this.handleSpeciesInput}
+          value={this.state.catch.species}
         />
         <TextInput
           style={styles.input}
@@ -130,11 +145,10 @@ class AddForm extends React.Component {
         />
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={this.addCatchToDB}
-        >
+          onPress={this.addCatchToDB}>
           <Text style={styles.submitButtonText}>Add catch</Text>
         </TouchableOpacity>
-      </View >
+      </View>
     );
   }
 }

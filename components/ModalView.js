@@ -27,7 +27,7 @@ const ModalView = ({ modalVisible, setModalVisible, setApiKey }) => {
         visible={modalVisible}
       >
         <View style={styles.modalView}>
-          <Text style={styles.titleText}>API-key needed</Text>
+          <Text style={styles.titleText}>Please enter an API-key</Text>
           <Text>Get one from:</Text>
           <Text
             style={styles.linkText}
