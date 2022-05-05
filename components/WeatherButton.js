@@ -28,7 +28,6 @@ const WeatherButton = ({
       .getCurrentWeather(latitude, longitude)
       .then(weatherObject => {
         if (weatherObject.length === 0) {
-          // tämä if-lause ei ole vielä testattu
           sendNotification('Faulty API-key!');
         } else {
           setWeather(weatherObject);
