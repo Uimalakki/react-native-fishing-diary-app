@@ -85,7 +85,7 @@ class AddForm extends React.Component {
     }
   };
 
-  handleLocating = async coordinatesObject => {
+  handleLocating = coordinatesObject => {
     let newCatch = this.state.catch;
     newCatch.coordinates = {
       latitude: coordinatesObject.latitude,
@@ -96,6 +96,9 @@ class AddForm extends React.Component {
     );
 
     this.setState({catch: newCatch});
+    if (this.state.catch.coordinates.latitude === 999) {
+      this.props.setMessage("Please enable device's location");
+    }
   };
 
   handleWeatherInfo = weatherObject => {

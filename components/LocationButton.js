@@ -10,9 +10,6 @@ const LocationButton = ({
 }) => {
   const handlePress = () => {
     coordinateService.getCoordinates(setLocation);
-    if (coordinates.latitude === 999) {
-      sendNotification("Please enable device's location");
-    }
   };
 
   return (

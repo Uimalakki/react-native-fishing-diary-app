@@ -13,11 +13,14 @@ const getCoordinates = setPosition => {
         latitude: positionObject.latitude,
         longitude: positionObject.longitude,
       };
-      console.log('locationservice ' + JSON.stringify(coordinates));
       setPosition(coordinates);
     })
     .catch(error => {
-      console.log(error);
+      const coordinates = {
+        latitude: 999,
+        longitude: 999,
+      };
+      setPosition(coordinates);
     });
 };
 
