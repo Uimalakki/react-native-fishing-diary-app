@@ -27,9 +27,6 @@ const WeatherButton = ({
     weatherService
       .getCurrentWeather(latitude, longitude)
       .then(weatherObject => {
-        console.log(
-          'weatherbutton getWeatherinfo weatherservice ' + weatherObject,
-        );
         if (weatherObject.length === 0) {
           sendNotification('Faulty API-key!');
         } else {

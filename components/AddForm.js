@@ -56,7 +56,6 @@ class AddForm extends React.Component {
     this.props.addCatch(oldCatches => [...oldCatches, newCatch]);
     await addCatch(this.state.catch);
     this.resetState();
-    console.log('Reseted? ' + this.state.catch.species);
   };
 
   addCatchToDB = async () => {
@@ -91,9 +90,6 @@ class AddForm extends React.Component {
       latitude: coordinatesObject.latitude,
       longitude: coordinatesObject.longitude,
     };
-    console.log(
-      'addFrom handleLoccating' + JSON.stringify(newCatch.coordinates),
-    );
 
     this.setState({catch: newCatch});
     if (this.state.catch.coordinates.latitude === 999) {
@@ -105,7 +101,6 @@ class AddForm extends React.Component {
     if (!this.props.apiKey) {
       this.props.setModalViewVisible(true);
     } else {
-      console.log('AddForm.handleWeatherInfo ' + JSON.stringify(weatherObject));
       let newCatch = this.state.catch;
       newCatch.weather = {
         temperature: weatherObject.main.temp,

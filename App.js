@@ -25,7 +25,6 @@ const App: () => Node = () => {
   useEffect(() => {
     if (apiKey) {
       encryptedStorage.saveValue(apiKey);
-      console.log(apiKey);
     }
   }, [apiKey]);
 
