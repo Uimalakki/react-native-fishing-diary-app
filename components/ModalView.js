@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  Button,
 } from 'react-native';
 
 const ModalView = ({modalVisible, setModalVisible, setApiKey}) => {
@@ -41,16 +42,18 @@ const ModalView = ({modalVisible, setModalVisible, setApiKey}) => {
             placeholder="enter api-key"
             onChangeText={handleChange}
           />
-          <TouchableOpacity
-            onPress={handlePress}
-            style={styles.modalPrimaryButton}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleClosing}
-            style={styles.modalSecondaryButton}>
-            <Text>Close</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonArea}>
+            <TouchableOpacity
+              onPress={handleClosing}
+              style={styles.modalSecondaryButton}>
+              <Text>Close</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handlePress}
+              style={styles.modalPrimaryButton}>
+              <Text>Add</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
@@ -81,6 +84,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 15,
     height: 40,
+    width: '30%',
   },
   modalSecondaryButton: {
     backgroundColor: '#D3F0FE',
@@ -89,6 +93,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 15,
     height: 40,
+    width: '30%',
   },
   titleText: {
     fontSize: 20,
@@ -101,6 +106,10 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 40,
     borderWidth: 1,
+    width: '100%',
+  },
+  buttonArea: {
+    flexDirection: 'row',
   },
 });
 
