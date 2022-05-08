@@ -8,6 +8,7 @@ App will use phone's GPS sensor, if desired/available and some weather api.
 User interface:
 
 ![UI_Form](assets/images/FormView.JPG) ![UI_List](assets/images/ListView.JPG)
+
 ![UI_ModalApiKey](assets/images/ModalApiKeyView.JPG) ![UI_ModalNotification](assets/images/ModalNotificationView.JPG)
 
 ## Project progress:
