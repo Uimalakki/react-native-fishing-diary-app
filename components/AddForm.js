@@ -16,11 +16,27 @@ class AddForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.resetState();
+    this.state = {
+      didMount: true,
+      catch: {
+        date: Date.now(),
+        coordinates: {
+          latitude: 999,
+          longitude: 999,
+        },
+        weather: {
+          temperature: 0,
+          description: 'n/a',
+          wind: 0,
+          icon: 'n/a',
+        },
+      },
+    };
   }
 
   resetState = () => {
     this.state = {
+      didMount: false,
       catch: {
         date: Date.now(),
         coordinates: {
@@ -85,15 +101,17 @@ class AddForm extends React.Component {
   };
 
   handleLocating = coordinatesObject => {
-    let newCatch = this.state.catch;
-    newCatch.coordinates = {
-      latitude: coordinatesObject.latitude,
-      longitude: coordinatesObject.longitude,
-    };
+    if (this.state.didMount) {
+      let newCatch = this.state.catch;
+      newCatch.coordinates = {
+        latitude: coordinatesObject.latitude,
+        longitude: coordinatesObject.longitude,
+      };
 
-    this.setState({catch: newCatch});
-    if (this.state.catch.coordinates.latitude === 999) {
-      this.props.setMessage("Please enable device's location");
+      this.setState({catch: newCatch});
+      if (this.state.catch.coordinates.latitude === 999) {
+        this.props.setMessage("Please enable device's location");
+      }
     }
   };
 

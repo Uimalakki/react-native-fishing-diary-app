@@ -7,7 +7,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
-  Button,
 } from 'react-native';
 
 const ModalView = ({modalVisible, setModalVisible, setApiKey}) => {
