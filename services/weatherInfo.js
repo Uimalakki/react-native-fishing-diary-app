@@ -8,6 +8,7 @@ const getCurrentWeather = async (latitude, longitude) => {
   const request = axios.get(
     baseUrl + `?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`,
   );
+
   return request.then(response => response.data);
 };
 

@@ -7,10 +7,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
-  Button,
 } from 'react-native';
 
-const ModalView = ({modalVisible, setModalVisible, setApiKey}) => {
+const ModalView = ({modalVisible, setModalVisible, setApiKey, setMessage}) => {
   const [textFromInput, setTextFromInput] = useState('');
 
   const handleChange = event => {
@@ -20,6 +19,9 @@ const ModalView = ({modalVisible, setModalVisible, setApiKey}) => {
   const handlePress = () => {
     setApiKey(textFromInput);
     handleClosing();
+    setMessage(
+      'API-key set, get the current weather by pressing Get weather info -button',
+    );
   };
 
   const handleClosing = () => {

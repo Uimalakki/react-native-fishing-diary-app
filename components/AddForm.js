@@ -85,6 +85,7 @@ class AddForm extends React.Component {
   };
 
   handleLocating = coordinatesObject => {
+    console.log('latitude aluksi' + this.state.catch.coordinates.latitude);
     let newCatch = this.state.catch;
     newCatch.coordinates = {
       latitude: coordinatesObject.latitude,

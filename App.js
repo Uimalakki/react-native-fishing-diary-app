@@ -57,6 +57,7 @@ const App: () => Node = () => {
           modalVisible={modalViewVisible}
           setModalVisible={setModalViewVisible}
           setApiKey={setApiKey}
+          setMessage={setMessage}
         />
         {changeView ? (
           <CatchList />

@@ -1,7 +1,7 @@
 import GetLocation from 'react-native-get-location';
 
 /*
-  Use a useState-setter as the parameter of the function
+  Use an useState-setter as the parameter of the function
 */
 const getCoordinates = setPosition => {
   GetLocation.getCurrentPosition({

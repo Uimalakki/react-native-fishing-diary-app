@@ -47,7 +47,6 @@ export async function addCatch(newCatch) {
   let realm = getRealm();
   const catchObject = await realm.write(() => {
     realm.create('Catch', newCatch);
-    console.log('added new catch to database');
     return true;
   });
   return catchObject;
@@ -71,7 +70,6 @@ export function deleteCatchById(id) {
   const catchObject = realm.objects('Catch').filtered(`id = ${id}`)[0];
   realm.write(() => {
     realm.delete(catchObject);
-    console.log('deleted catch ' + id);
   });
 }
 

@@ -6,7 +6,7 @@ const Notification = ({setMessage, message}) => {
     setMessage(null);
   };
 
-  const setVisiblee = () => {
+  const setVisible = () => {
     if (message) {
       return true;
     }
@@ -15,7 +15,7 @@ const Notification = ({setMessage, message}) => {
 
   return (
     <View>
-      <Modal animationType="slide" transparent={true} visible={setVisiblee()}>
+      <Modal animationType="slide" transparent={true} visible={setVisible()}>
         <View style={styles.modalView}>
           <Text>{message}</Text>
           <TouchableOpacity onPress={handlePress} style={styles.modalButton}>
